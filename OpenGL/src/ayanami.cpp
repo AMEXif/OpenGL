@@ -7,12 +7,11 @@ int main(void)
     GLFWwindow* window;
 
     std::cout << "Rei" << std::endl;
+
     if (!glfwInit())
         return -1;
 
-    glewInit();
-
-    /* Create a windowed mode window and its OpenGL context */
+    /* Create a window with OpenGL context */
     window = glfwCreateWindow(640, 480, "Rei Ayanami", NULL, NULL);
     if (!window)
     {
@@ -21,6 +20,11 @@ int main(void)
     }
 
     glfwMakeContextCurrent(window);
+
+    if (glewInit() != GLEW_OK)
+        std::cout << "Rei dead" << std::endl;
+
+    std::cout << glGetString(GL_VERSION) << std::endl;
 
     while (!glfwWindowShouldClose(window))
     {
@@ -40,6 +44,7 @@ int main(void)
         glfwPollEvents();
     }
 
+    /* Exit */
     glfwTerminate();
     return 0;
 }
